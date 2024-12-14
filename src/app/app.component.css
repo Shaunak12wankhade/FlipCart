@@ -1,0 +1,110 @@
+.container {
+    width: 80%;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .search-bar {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+  
+  .product-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .product-table th,
+  .product-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .product-table th {
+    background-color: #f4f4f4;
+
+  }
+  
+  .product-image {
+    max-width: 50px;
+    height: auto;
+  }
+  
+  .btndiv{
+    display: flex;
+    /* justify-content: space-around; */
+    gap: 10px;
+  }
+
+  .updatebtn{
+    /* background-color: green; */
+    background-color: #007bff;
+
+    color: white;
+    border: none;
+    width: 80px;
+    height: 30px;
+    cursor: pointer;
+
+  }
+
+  .deletebtn{
+    background-color: rgb(176, 2, 2);
+    color: white;
+    /* border-radius: 4px; */
+    border: none;
+    width: 80px;
+    height: 30px;
+    cursor: pointer;
+
+  }
+  .pagination {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .pagination button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .pagination .active {
+    font-weight: bold;
+    background-color: #007bff;
+    color: white;
+    border: none;
+  }
+  
+  .product-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .product-form input,
+  .product-form textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .product-form button {
+    width: 100px;
+    align-self: center;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
