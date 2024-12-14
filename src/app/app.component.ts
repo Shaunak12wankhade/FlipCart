@@ -60,6 +60,13 @@ export class AppComponent implements OnInit {
     return this.filteredProducts.slice(start, start + this.itemsPerPage);
   }
 
+  searchProducts(): void {
+    this.filteredProducts = this.products.filter((product) =>
+      product.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
+    this.currentPage = 1;
+  }
+
   // searchProducts(): void {
   //   this.filteredProducts = this.products.filter((product) =>
   //     product.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
@@ -77,12 +84,7 @@ export class AppComponent implements OnInit {
   //   this.currentPage = 1;
   // }
 
-  searchProducts(): void {
-    this.filteredProducts = this.products.filter((product) =>
-      product.title.toLowerCase().includes(this.searchQuery.toLowerCase()) 
-    );
-    this.currentPage = 1;
-  }
+
   changePage(page: number): void {
     this.currentPage = page;
   }
@@ -125,7 +127,7 @@ export class AppComponent implements OnInit {
       const index = this.products.findIndex((p) => p.id === this.selectedProductId);
 
       this.products[index] = {
-      
+
         id: this.selectedProductId,
         title: this.newProduct.title || '',
         price: this.newProduct.price || 0,
