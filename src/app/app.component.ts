@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
       this.products = response;
       console.log("this.products:-", this.products);
       console.log("this.products.length:-", this.products.length);
-      
+
       this.filteredProducts = [...this.products];
       console.log("this.filteredProducts:-", this.filteredProducts);
 
@@ -60,13 +60,29 @@ export class AppComponent implements OnInit {
     return this.filteredProducts.slice(start, start + this.itemsPerPage);
   }
 
+  // searchProducts(): void {
+  //   this.filteredProducts = this.products.filter((product) =>
+  //     product.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+
+  //     product.description.toLowerCase().includes(this.searchQuery.toLowerCase())
+  //     ||
+  //     product.category.toLowerCase().includes(this.searchQuery.toLowerCase())
+  //     ||
+  //     product.price.toString().includes(this.searchQuery.toLowerCase())
+  //     ||
+  //     product.rating.rate.toString().includes(this.searchQuery.toLowerCase())
+  //     ||
+  //     product.rating.count.toString().includes(this.searchQuery.toLowerCase())
+  //   );
+  //   this.currentPage = 1;
+  // }
+
   searchProducts(): void {
     this.filteredProducts = this.products.filter((product) =>
-      product.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+      product.title.toLowerCase().includes(this.searchQuery.toLowerCase()) 
     );
     this.currentPage = 1;
   }
-
   changePage(page: number): void {
     this.currentPage = page;
   }
@@ -86,8 +102,8 @@ export class AppComponent implements OnInit {
     this.products.push(addProduct);       // to ADD new product to database
     this.filteredProducts = [...this.products];     // ... is spread operator that overrides the existing products array , // filteredproducts [] is used to store/dislay the final products values after add,update & delete
     console.log("this.filteredProducts for add:-", this.filteredProducts);
-    
-    this.newProduct = { rating: { rate: 0, count: 0 } };     // to UPDATE product as per below editProduct()
+
+    this.newProduct = { rating: { rate: 0, count: 0 } };     // this resets newProduct to its initial state for future additions.
     console.log("this.newProduct to update:-", this.newProduct);
 
   }
@@ -95,8 +111,8 @@ export class AppComponent implements OnInit {
 
   editProduct(product: Product): void {
     this.editMode = true;
-    this.selectedProductId = product.id;   //taken from interface product 
-    this.newProduct = { ...product };      //... is spread operator that overrides the existing product object 
+    this.selectedProductId = product.id;   // Stores the product's ID in selectedProductId for reference during updates , product.id is taken from interface "product" 
+    this.newProduct = { ...product };      //... is spread operator which Copies the product's details into this.newProduct 
 
     console.log("this.newProduct for update:-", this.newProduct);
 
@@ -105,10 +121,11 @@ export class AppComponent implements OnInit {
 
   updateProduct(): void {
     if (this.selectedProductId !== null) {
-      
+
       const index = this.products.findIndex((p) => p.id === this.selectedProductId);
-      
+
       this.products[index] = {
+      
         id: this.selectedProductId,
         title: this.newProduct.title || '',
         price: this.newProduct.price || 0,
@@ -123,7 +140,7 @@ export class AppComponent implements OnInit {
       this.filteredProducts = [...this.products];  // filteredproducts [] is used to store/dislay the final products values after add,update or delete
       this.editMode = false;         // is now set to false after completion of updation
       this.selectedProductId = null;
-      this.newProduct = { rating: { rate: 0, count: 0 } };
+      this.newProduct = { rating: { rate: 0, count: 0 } };   // this resets newProduct to its initial state for future operations.
     }
   }
 
