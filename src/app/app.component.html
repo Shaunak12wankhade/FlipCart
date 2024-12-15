@@ -34,13 +34,19 @@
         <td>{{ product.rating.count }}</td>
         <td>
           <div class="btndiv">
+            <button class="updatebtn" (click)="selectedproductdetails(product)">View Details</button>
             <button class="updatebtn" (click)="editProduct(product)">Update</button>
             <button class="deletebtn" (click)="deleteProduct(product.id)">Delete</button>
           </div>
         </td>
       </tr>
     </tbody>
+   
   </table>
+
+ 
+  <p>Total Products: {{ products.length }}</p>
+<p>Filtered Products: {{ filteredProducts.length }}</p>
 
   <!-- Pagination Controls -->
   <div class="pagination">
@@ -67,5 +73,18 @@
     <button (click)="editMode ? updateProduct() : addProduct()">
       {{ editMode ? 'Update' : 'Add' }}
     </button>
+  </div>
+
+  <div *ngIf="selectedProduct" class="details_modal">
+    <div class="modalcontent">
+      <button class="deletebtn" (click)="closemodal()">Close</button>
+      <h2 style="text-decoration: underline;"> Title :- {{ this.selectedProduct.title}}</h2>
+      <h3> Description:- {{ this.selectedProduct.description}}</h3>
+      <h3> Price :-{{ this.selectedProduct.price}}</h3>
+      <h3> Category :-{{ this.selectedProduct.category}}</h3>
+      <h3> Rating :-(Rate){{ this.selectedProduct.rating.rate}}</h3>
+      <h3> Rating :-(Count){{ this.selectedProduct.rating.count}}</h3>
+  
+    </div>
   </div>
 </div>

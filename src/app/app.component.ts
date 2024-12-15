@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
   editMode: boolean = false;   // is used to change the title add/edit based on the actions
 
   selectedProductId: number | null = null;
+  selectedProduct : Product | null = null;
 
   constructor(private http: HttpClient) { }
 
@@ -52,7 +53,13 @@ export class AppComponent implements OnInit {
       this.filteredProducts = [...this.products];
       console.log("this.filteredProducts:-", this.filteredProducts);
 
-    });
+    },
+    (error) =>{
+      console.log("Failed to load products", error);
+      alert("An error occured while loading the products");
+
+    }
+    );
   }
 
   get paginatedProducts(): Product[] {
@@ -151,5 +158,13 @@ export class AppComponent implements OnInit {
     this.products = this.products.filter((product) => product.id !== productId);
     this.filteredProducts = [...this.products];     // filteredproducts [] is used to store/dislay the final products values after add,update & delete
 
+  }
+
+  selectedproductdetails(product: Product) : void{
+    this.selectedProduct = product;
+    console.log("this.selectedProduct:-",this.selectedProduct);
+  }
+  closemodal(){
+    this.selectedProduct = null;
   }
 }
