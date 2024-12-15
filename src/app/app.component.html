@@ -42,7 +42,7 @@
     </tbody>
   </table>
 
-  <!-- Pagination Controls -->
+  <!-- Pagination Controls defined-->
   <div class="pagination">
     <button *ngFor="let page of [1, 2, 3, 4, 5]; let i = index" [class.active]="currentPage === i + 1"
       (click)="changePage(i + 1)">
